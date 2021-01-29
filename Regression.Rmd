@@ -1,0 +1,101 @@
+---
+title: "Untitled"
+author: "MutluKazak"
+date: "15 06 2020"
+output: html_document
+---
+```{r}
+#creating an example data which is df has two variable. 
+
+x<-c(10.7 , 9.91 , 10.86 , 11.3 , 11.33 , 11.8 , 14.55 , 16.12 , 14.7 , 13.9 , 12.97 , 12.65 , 11.02 , 10.79 , 10.2 , 10.63 , 9.98 , 9.57 , 9.2 , 8.7)
+y<-c(2.13 , 2.36 , 1.98 , 1.81 , 1.92 , 1.75 , 1.21 , 0.58 , 1.05 , 1.66 , 1.71 , 1.59 , 2 , 2.07 , 2.42 , 2.06 , 2.18 , 2.37 , 2.36 , 2.62)
+
+length(x)
+data <- data.frame(y = y, x = x)
+
+n <- nrow(data)
+k <- 2
+
+xmean <- mean(x)
+xmean
+
+ymean <- mean(y)
+ymean
+
+xi.xmean <- x - xmean
+data$xi.xmean <- xi.xmean
+
+xi.xmean.sq <- xi.xmean^2
+data$xi.xmean.sq <- xi.xmean.sq
+
+xi.xmean.ymean <- xi.xmean * y
+xi.xmean.ymean
+data$xi.xmean.ymean <- xi.xmean.ymean
+
+b1 <- sum(xi.xmean.ymean) / sum(xi.xmean.sq)
+b1
+
+b0 <- ymean - b1 * xmean
+b0
+
+y.hat <- b0 + b1 * x
+y.hat
+sum(y.hat)
+ymean * n
+data$y.hat <- y.hat
+
+u.hat <- y -y.hat
+u.hat
+sum(u.hat)
+data$u.hat <- u.hat
+ 
+u.hat.sq <- u.hat^2
+u.hat.sq
+data$u.hat.sq <- u.hat.sq
+
+sum(u.hat.sq)
+u.hat.sq.sum <- sum(u.hat.sq)
+u.hat.sq.sum
+
+y.ymean.sq <- (y - ymean)^2
+y.ymean.sq
+data$y.ymean.sq <- y.ymean.sq
+
+sum(y.ymean.sq)
+y.ymean.sq.sum <- sum(y.ymean.sq)
+y.ymean.sq.sum
+
+y.hat.ymean.sq <- (y.hat - ymean)^2
+y.hat.ymean.sq
+data$y.hat.ymean.sq <- y.hat.ymean.sq
+
+sum(y.hat.ymean.sq)
+y.hat.ymean.sq.sum <- sum(y.hat.ymean.sq)
+y.hat.ymean.sq.sum
+
+sqrt(u.hat.sq.sum / (n-k))
+
+y.hat.ymean.sq.sum / y.ymean.sq.sum
+
+
+model <- lm(data = data, formula = y ~ x, singular.ok = FALSE)
+model
+summary(model)
+
+ std.error <- sqrt(sum((model$residuals)^2)/(n-k))
+std.error
+
+SST <- sum((y - mean(y))^2)
+SST
+SSE <- sum((model$fitted.values - mean(y))^2)
+SSE
+SSR <- sum((model$residuals)^2)
+SSR
+
+r2 <- SSE/SST
+r2
+
+```
+
+
+
