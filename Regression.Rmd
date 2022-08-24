@@ -1,10 +1,4 @@
----
-title: "Untitled"
-author: "MutluKazak"
-date: "15 06 2020"
-output: html_document
----
-```{r}
+
 #creating an example data which is df has two variable. 
 
 x<-c(10.7 , 9.91 , 10.86 , 11.3 , 11.33 , 11.8 , 14.55 , 16.12 , 14.7 , 13.9 , 12.97 , 12.65 , 11.02 , 10.79 , 10.2 , 10.63 , 9.98 , 9.57 , 9.2 , 8.7)
@@ -94,8 +88,6 @@ SSR
 
 r2 <- SSE/SST
 r2
-
-```
 
 
 
